@@ -4,21 +4,20 @@
   >
     <div class="flex flex-col gap-3 w-[250px] bg-slate-50 rounded-l-lg p-5">
       <app-title text="Lists"></app-title>
+      <!-- <h2>{{ lists[2].title }}</h2> -->
       <div class="flex flex-col gap-2 flex-grow">
         <div
+          *ngFor="let list of lists"
+          [routerLink]="['/lists', list._id]"
+          (click)="setActive(list._id)"
           class="text-lg text-teal-700 text-center py-1 rounded-md hover:bg-slate-300"
-          [ngClass]="{ 'bg-white': active }"
+          [ngClass]="{ 'bg-teal-200': activeId === list._id }"
         >
-          List 1
-        </div>
-        <div
-          class="text-lg text-teal-700 text-center py-1 rounded-md hover:bg-slate-300"
-          [ngClass]="{ 'bg-white': active }"
-        >
-          List 1
+          {{ list.title }}
         </div>
       </div>
       <button
+        routerLink="/add-list"
         class="bg-teal-500 py-1 rounded-md font-semibold text-white/90 text-lg hover:bg-teal-300"
       >
         + New List
@@ -28,10 +27,10 @@
       <app-title text="Tasks"></app-title>
       <div class="flex flex-col gap-2 flex-grow">
         <div
+          *ngFor="let task of tasks"
           class="text-lg text-teal-700 text-center bg-slate-50 py-1 rounded-md hover:bg-slate-300"
-          [ngClass]="{ 'bg-white': active }"
         >
-          List 1
+          {{ task.title }}
         </div>
       </div>
     </div>
