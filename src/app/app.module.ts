@@ -8,9 +8,10 @@ import { TitleComponent } from './components/title/title.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddListComponent } from './components/add-list/add-list.component';
 import { FormsModule } from '@angular/forms';
+import { AddTaskComponent } from './components/add-task/add-task.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskComponent, TitleComponent, AddListComponent],
+  declarations: [AppComponent, TaskComponent, TitleComponent, AddListComponent, AddTaskComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

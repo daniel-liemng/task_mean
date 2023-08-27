@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { List } from 'src/app/models/list.model';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -17,10 +19,9 @@ export class AddListComponent {
       return alert('Please enter the title');
     }
 
-    this.taskService.createList(this.title).subscribe((data) => {
-      console.log(data);
+    this.taskService.createList(this.title).subscribe((list: any) => {
+      console.log(list);
+      this.router.navigate(['/lists', list._id]);
     });
-
-    this.router.navigateByUrl('/');
   }
 }
