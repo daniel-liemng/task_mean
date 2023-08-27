@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { List } from 'src/app/models/list.model';
+import { Task } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -9,8 +11,8 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TaskComponent {
   activeId!: string;
-  lists!: any[];
-  tasks!: any[];
+  lists!: List[];
+  tasks!: Task[];
   listId!: string;
 
   constructor(
@@ -39,6 +41,14 @@ export class TaskComponent {
 
   setActive(id: string) {
     this.activeId = id;
+  }
+
+  // Toggle Task Completed
+  onTaskComplete(task: Task) {
+    this.taskService.completeTask(task).subscribe((taskData: any) => {
+      console.log('12', taskData);
+      task.completed = !task.completed;
+    });
   }
 
   goToAddTask() {

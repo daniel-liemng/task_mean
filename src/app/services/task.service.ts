@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WebRequestService } from './web-request.service';
-import { List } from '../models/list.model';
+import { Task } from '../models/task.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +22,14 @@ export class TaskService {
 
   createTask(listId: string, title: string) {
     return this.webRequestService.post(`api/lists/${listId}/tasks`, { title });
+  }
+
+  completeTask(task: Task) {
+    return this.webRequestService.patch(
+      `api/lists/${task.listId}/tasks/${task._id}`,
+      {
+        completed: !task.completed,
+      }
+    );
   }
 }

@@ -27,7 +27,9 @@
       <div class="flex flex-col gap-2 flex-grow">
         <div
           *ngFor="let task of tasks"
+          (click)="onTaskComplete(task)"
           class="text-lg text-teal-700 text-center bg-slate-50 py-1 rounded-md hover:bg-slate-300"
+          [ngClass]="{ completed: task.completed }"
         >
           {{ task.title }}
         </div>
